@@ -1,17 +1,10 @@
-from http.client import HTTP_PORT
-from statistics import mode
 from fastapi import FastAPI, status, HTTPException, Response, Depends
-from pydantic import BaseModel
-import psycopg2
-from psycopg2.extras import RealDictCursor
-import time
 from typing import List
 from sqlalchemy.orm import Session
 from . import models, schemas
 from .database import get_db, engine
 
 models.Base.metadata.create_all(bind=engine)
-
 app = FastAPI()
 
 
