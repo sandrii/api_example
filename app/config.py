@@ -15,4 +15,5 @@ class ConfigurationParameters(BaseSettings):
     class Config:
         env_file = "app/.env"
 
+
 settings = ConfigurationParameters()

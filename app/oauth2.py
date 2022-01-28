@@ -1,5 +1,4 @@
 from http.client import HTTPException
-from wsgiref.util import setup_testing_defaults
 from jose import JWTError, jwt
 from datetime import datetime, timedelta 
 from app import schemas, database, models
@@ -11,6 +10,7 @@ from sqlalchemy.orm import Session
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
+
 def create_access_token(data: dict):
     
     to_encode = data.copy()
@@ -19,17 +19,19 @@ def create_access_token(data: dict):
     encoded_jwt = jwt.encode(to_encode, settings.secret_key, algorithm=settings.algorithm)
     return encoded_jwt
 
-def verify_access_token(token: str, credentials_exeptinon):
+
+def verify_access_token(token: str, credentials_exception):
 
     try:
         payload = jwt.decode(token, settings.secret_key, algorithms=[settings.algorithm])
-        id = payload.get("user_id")
-        if not id:
-            raise credentials_exeptinon
-        token_data = schemas.TokenData(id=id)
+        user_id = payload.get("user_id")
+        if not user_id:
+            raise credentials_exception
+        token_data = schemas.TokenData(id=user_id)
     except JWTError:
-        raise credentials_exeptinon
+        raise credentials_exception
     return token_data
+
 
 def get_current_user(token: str = Depends(oauth2_scheme),
                      db: Session = Depends(database.get_db)):
@@ -38,5 +40,4 @@ def get_current_user(token: str = Depends(oauth2_scheme),
                                           detail=f"Could not validate credentials",
                                           headers={"WWW-Authenticate": "Bearer"})
     token = verify_access_token(token, credentials_exception)
-    user = db.query(models.User).filter(models.User.id == token.id).first()
-    return user
+    return db.query(models.User).filter(models.User.id == token.id).first()
