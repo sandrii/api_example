@@ -6,23 +6,27 @@
 	},
 	"item": [
 		{
-			"name": "GetPostNumber",
+			"name": "GetPostsID",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8008/posts/2",
-					"protocol": "http",
+					"raw": "{{URL}}posts/10",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{URL}}posts"
 					],
-					"port": "8008",
 					"path": [
-						"posts",
-						"2"
+						"10"
 					]
 				}
 			},
@@ -31,20 +35,22 @@
 		{
 			"name": "GetPosts",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8008/posts",
-					"protocol": "http",
+					"raw": "{{URL}}posts",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8008",
-					"path": [
-						"posts"
+						"{{URL}}posts"
 					]
 				}
 			},
@@ -53,21 +59,25 @@
 		{
 			"name": "DeletePost",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8008/posts/1",
-					"protocol": "http",
+					"raw": "{{URL}}posts/10",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{URL}}posts"
 					],
-					"port": "8008",
 					"path": [
-						"posts",
-						"1"
+						"10"
 					]
 				}
 			},
@@ -76,11 +86,28 @@
 		{
 			"name": "CreatePost",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDI5Njk5MzR9.c-jTv7HalHJOc8n1VAw06uAU1tkPhcrrGelhzyls-Co",
+						"type": "default",
+						"disabled": true
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"my tit\",\r\n    \"content\": \"my content\"\r\n}",
+					"raw": "{\r\n    \"title\": \"some new post\",\r\n    \"content\": \"my content\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,17 +115,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8008/posts",
-					"protocol": "http",
+					"raw": "{{URL}}posts",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8008",
-					"path": [
-						"posts"
+						"{{URL}}posts"
 					]
 				}
 			},
@@ -107,11 +126,21 @@
 		{
 			"name": "UpdatePost",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"my new\",\r\n    \"content\": \"my new content\"\r\n}",
+					"raw": "{\r\n    \"title\": \"my new new 4545\",\r\n    \"content\": \"my new content\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -119,18 +148,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8008/posts/466",
-					"protocol": "http",
+					"raw": "{{URL}}posts/9",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{URL}}posts"
 					],
-					"port": "8008",
 					"path": [
-						"posts",
-						"466"
+						"9"
 					]
 				}
 			},
@@ -142,19 +165,99 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8008/healthcheck",
-					"protocol": "http",
+					"raw": "{{URL}}healthcheck",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8008",
-					"path": [
-						"healthcheck"
+						"{{URL}}healthcheck"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"andreyshdwdw@gmail.com\",\r\n    \"password\": \"password123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}users",
+					"host": [
+						"{{URL}}users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUsersID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}users/4",
+					"host": [
+						"{{URL}}users"
+					],
+					"path": [
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"JWT\", pm.response.json().access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "andreysh@gmail.com",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "password123",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}login",
+					"host": [
+						"{{URL}}login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vote",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}
