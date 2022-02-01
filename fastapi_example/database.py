@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from app.config import settings
+from fastapi_example.config import settings
 
 
 engine = create_engine(f"postgresql://{settings.db_username}:"

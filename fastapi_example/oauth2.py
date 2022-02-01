@@ -1,8 +1,8 @@
 from http.client import HTTPException
 from jose import JWTError, jwt
 from datetime import datetime, timedelta 
-from app import schemas, database, models
-from app.config import settings
+from fastapi_example import schemas, database, models
+from fastapi_example.config import settings
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session

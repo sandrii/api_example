@@ -1,7 +1,7 @@
 from typing import List, Optional
 from fastapi import Response, status, HTTPException, Depends, APIRouter
 from sqlalchemy.orm import Session
-from app import database, models, schemas, oauth2
+from fastapi_example import database, models, schemas, oauth2
 
 
 router = APIRouter(prefix="/posts", tags=["Posts"])
