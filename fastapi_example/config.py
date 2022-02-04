@@ -14,8 +14,8 @@ class ConfigurationParameters(BaseSettings):
     access_token_expire_minutes: int
 
     class Config:
-#        env_file = "fastapi_example/.env"
-        env_file = ".env"
+        env_file = "fastapi_example/.env"
+#        env_file = ".env"
 
 
 settings = ConfigurationParameters()
